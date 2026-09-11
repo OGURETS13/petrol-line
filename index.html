@@ -183,12 +183,7 @@ button{font:inherit;color:inherit}
   font-family:var(--display);font-weight:600;font-size:12px;letter-spacing:.16em;
   padding:4px 10px;border-radius:3px;
 }
-.rules{display:flex;flex-direction:column;gap:9px;margin:0;padding:0;list-style:none}
-.rules li{display:flex;gap:10px;font-size:14.5px;color:var(--paint-dim);line-height:1.45}
-.rules li i{
-  font-style:normal;font-family:var(--mono);font-size:13px;color:var(--amber);
-  flex:none;padding-top:2px;
-}
+.rule{margin:0;font-size:15px;color:var(--paint-dim);line-height:1.55}
 .bday{
   font-family:var(--display);font-size:13px;letter-spacing:.12em;text-transform:uppercase;
   color:var(--paint-dim);border-top:1px dashed var(--kerb);padding-top:13px;
@@ -310,17 +305,13 @@ button{font:inherit;color:inherit}
     <div class="hero">
       <div class="sign">АЗС · РАБОТАЕТ</div>
       <h1>Очередь<br>на АИ-95</h1>
-      <p class="sub">Топлива в городе нет. У колонки — сорок машин, в одни руки не больше двадцати литров,
+      <p class="sub">Топлива в городе нет. У колонки — сорок четыре машины, в одни руки не больше двадцати литров,
       и очередь двигается только к тем, кто чего-то в этой жизни знает.</p>
     </div>
 
     <div class="card">
       <div class="eyebrow">Как это работает</div>
-      <ul class="rules">
-        <li><i>01</i><span>Десять вопросов: бокс и банкротство. Каждый верный ответ продвигает вас на четыре машины вперёд.</span></li>
-        <li><i>02</i><span>Перед последним вопросом возможны осложнения. Человеческий фактор.</span></li>
-        <li><i>03</i><span>Сколько нальют на финише — зависит только от счёта. Десять из десяти — это бак и две канистры.</span></li>
-      </ul>
+      <p class="rule">Десять вопросов: бокс, банкротство и Узбекистан. Каждый верный ответ продвигает вас на четыре машины вперёд.</p>
       <div class="bday">С днём рождения. Без очереди сегодня всё равно нельзя.</div>
     </div>
 
@@ -344,10 +335,10 @@ button{font:inherit;color:inherit}
 
     <div class="posline">
       <div class="who">
-        <span class="n" id="pos">40</span>
+        <span class="n" id="pos">44</span>
         <span class="suf">-й в очереди</span>
       </div>
-      <div class="sc">Вопрос <b id="qn">1</b>/<b>10</b><br>Счёт <b id="sc">0</b></div>
+      <div class="sc">Вопрос <b id="qn">1</b>/<b id="qtot">10</b><br>Счёт <b id="sc">0</b></div>
     </div>
 
     <div class="card">
@@ -440,7 +431,7 @@ button{font:inherit;color:inherit}
       <div class="top">
         <div class="row"><span>Литры</span><span>АИ-95</span></div>
         <div class="big"><span id="liters">0</span><small> Л</small></div>
-        <div class="row"><span>Счёт <span id="end-sc" style="color:var(--paint)">0</span>/10</span><span id="end-fight">—</span></div>
+        <div class="row"><span>Счёт <span id="end-sc" style="color:var(--paint)">0</span>/<span id="end-tot" style="color:var(--paint)">10</span></span><span id="end-fight">—</span></div>
       </div>
       <div class="bot">
         <div class="prize" id="prize">—</div>
@@ -484,6 +475,14 @@ var Q = [
     tag:"127-ФЗ"
   },
   {
+    cat:"Узбекистан · Самарканд",
+    q:"Как называется главная площадь Самарканда, с трёх сторон обрамлённая медресе?",
+    a:["Чорсу","Регистан","Ляби-Хауз","Пой-Калон"],
+    c:1,
+    why:"Регистан — буквально «песчаное место». Чорсу — базар в Ташкенте, а Ляби-Хауз и Пой-Калон — ансамбли в Бухаре.",
+    tag:"Регистан"
+  },
+  {
     cat:"Бокс · история",
     q:"Какое имя Мохаммед Али получил при рождении?",
     a:["Кассиус Клей","Уолкер Смит","Арнольд Крим","Джозеф Барроу"],
@@ -492,12 +491,12 @@ var Q = [
     tag:"Кассиус Клей"
   },
   {
-    cat:"Банкротство · порог",
-    q:"Гражданин ОБЯЗАН сам подать заявление о своём банкротстве, если долг превышает:",
-    a:["300 000 ₽","500 000 ₽","1 000 000 ₽","50 000 ₽"],
+    cat:"Узбекистан · наука",
+    q:"От имени какого учёного родом из Хорезма произошло слово «алгоритм»?",
+    a:["Ибн Сина","Аль-Хорезми","Бируни","Улугбек"],
     c:1,
-    why:"500 000 ₽ при просрочке свыше трёх месяцев — п. 1 ст. 213.4. Право подать заявление есть и при меньшей сумме, а вот обязанность возникает с полумиллиона.",
-    tag:"500 000 ₽"
+    why:"Мухаммад аль-Хорезми, IX век. От латинского написания его имени пошёл «алгоритм», а от названия его трактата «ал-джабр» — алгебра.",
+    tag:"Аль-Хорезми"
   },
   {
     cat:"Бокс · тактика",
@@ -508,20 +507,12 @@ var Q = [
     tag:"Rope-a-dope"
   },
   {
-    cat:"Банкротство · МФЦ",
-    q:"В каких пределах долга можно пройти внесудебное банкротство через МФЦ?",
-    a:["от 50 000 до 500 000 ₽","от 25 000 до 1 000 000 ₽","от 100 000 до 2 000 000 ₽","предел не установлен"],
-    c:1,
-    why:"С ноября 2023-го — от 25 000 до 1 000 000 ₽. До этого коридор был 50 000 – 500 000 ₽.",
-    tag:"25 тыс. – 1 млн"
-  },
-  {
-    cat:"Бокс · правила",
-    q:"Какой свод правил в 1867 году ввёл перчатки, трёхминутные раунды и счёт до десяти?",
-    a:["Правила Джека Браутона","Лондонские призовые правила","Правила маркиза Куинсберри","Устав ABA"],
-    c:2,
-    why:"Правила маркиза Куинсберри — написал их, впрочем, Джон Чемберс. Браутон — 1743-й, Лондонские призовые — 1838-й, и оба ещё про голые кулаки.",
-    tag:"Куинсберри"
+    cat:"Узбекистан · быт",
+    q:"Как называется узбекский мужской стёганый халат?",
+    a:["Чапан","Курпача","Дастархан","Тюбетейка"],
+    c:0,
+    why:"Чапан. Курпача — стёганый матрасик, на котором сидят, дастархан — скатерть и всё, что на ней стоит, тюбетейка — шапочка.",
+    tag:"Чапан"
   },
   {
     cat:"Банкротство · процедуры",
@@ -532,12 +523,12 @@ var Q = [
     tag:"Реализация имущества"
   },
   {
-    cat:"Банкротство · оспаривание",
-    q:"Максимальный период подозрительности для сделки, совершённой во вред кредиторам (п. 2 ст. 61.2):",
-    a:["6 месяцев","1 год","3 года","10 лет"],
-    c:2,
-    why:"Три года до принятия заявления. Год — это неравноценное встречное предоставление по п. 1, полгода — сделки с предпочтением по ст. 61.3.",
-    tag:"3 года"
+    cat:"Узбекистан · грызуны",
+    q:"Как зовут самого известного бурундука Узбекистана?",
+    a:["Чип","Амир Бурундук","Дейл","Скрэт"],
+    c:1,
+    why:"Амир Бурундук — военачальник Тимура, и его мавзолей стоит в Шахи-Зинде, в Самарканде. К грызунам отношения не имеет. Фотографию таблички вы уже кому-то отправляли.",
+    tag:"Амир Бурундук"
   },
   {
     cat:"Бокс · дисквалификация",
@@ -549,7 +540,8 @@ var Q = [
   }
 ];
 
-var START_POS = 40, STEP_RIGHT = 4, STEP_WRONG = 1, FIGHT_BONUS = 4;
+var STEP_RIGHT = 4, STEP_WRONG = 1, FIGHT_BONUS = 4;
+var START_POS = Q.length * STEP_RIGHT + FIGHT_BONUS;
 
 /* ---------------- state ---------------- */
 
@@ -629,7 +621,9 @@ function renderQ(){
   $("cat").textContent = q.cat;
   $("q").textContent = q.q;
   $("qn").textContent = st.i + 1;
+  $("qtot").textContent = Q.length;
   $("sc").textContent = st.score;
+  $("pos").textContent = st.pos;
   $("verdict").hidden = true;
   $("next").hidden = true;
 
@@ -682,12 +676,13 @@ function answer(idx){
 
   var n = $("next");
   n.hidden = false;
-  n.textContent = (st.i === 8) ? "Тронуться дальше" : (st.i === 9 ? "К колонке" : "Дальше");
+  n.textContent = (st.i === Q.length - 2) ? "Тронуться дальше"
+                 : (st.i === Q.length - 1 ? "К колонке" : "Дальше");
 }
 
 function nextStep(){
   st.i++;
-  if(st.i === 9 && !st.wonFight){ show("s-intro"); return; }
+  if(st.i === Q.length - 1 && !st.wonFight){ show("s-intro"); return; }
   if(st.i >= Q.length){ finale(); return; }
   renderQ();
 }
@@ -812,29 +807,30 @@ function endFight(won){
 
 /* ---------------- finale ---------------- */
 
-function reward(score){
-  if(score >= 10) return {
+function reward(score, total){
+  var r = score / total;
+  if(score === total) return {
     liters:100, gold:true,
     prize:"Полный бак и две канистры",
     loot:["БАК 60 Л","КАНИСТРА 20 Л","КАНИСТРА 20 Л"],
     head:"Вам налили всё",
-    txt:"Оператор посмотрел на ваши десять из десяти, оглянулся на камеру и сказал: «Подгоняйте багажник». Десять из десяти сегодня не сделал никто."
+    txt:"Оператор посмотрел на ваши десять из десяти, оглянулся на камеру и сказал: «Подгоняйте багажник». Столько сегодня не набрал никто."
   };
-  if(score >= 8) return {
+  if(r >= 0.8) return {
     liters:80, gold:true,
     prize:"Полный бак и канистра",
     loot:["БАК 60 Л","КАНИСТРА 20 Л"],
     head:"Лимит для вас подвинули",
     txt:"Двадцать литров в одни руки — это для тех, кто путает хук с апперкотом. Вам залили бак и разрешили одну канистру. По-тихому."
   };
-  if(score >= 5) return {
+  if(r >= 0.5) return {
     liters:60, gold:false,
     prize:"Полный бак",
     loot:["БАК 60 Л"],
     head:"Полный бак",
     txt:"Крепкая работа: бак под горловину, без канистры. До дачи и обратно хватит, а там, глядишь, и завезут."
   };
-  if(score >= 3) return {
+  if(r >= 0.3) return {
     liters:20, gold:false,
     prize:"Двадцать литров. Как всем",
     loot:["20 Л"],
@@ -851,18 +847,19 @@ function reward(score){
 }
 
 function finale(){
-  var r = reward(st.score);
+  var rw = reward(st.score, Q.length);
 
-  $("end-h").textContent = r.head;
+  $("end-h").textContent = rw.head;
   $("end-sc").textContent = st.score;
+  $("end-tot").textContent = Q.length;
   $("end-fight").textContent = st.wonFight ? "БОЙ ВЫИГРАН" : "БОЙ НЕ ЗАСЧИТАН";
-  $("prize").textContent = r.prize;
-  $("prize").className = "prize" + (r.gold ? " gold" : "");
-  $("endtxt").textContent = r.txt;
+  $("prize").textContent = rw.prize;
+  $("prize").className = "prize" + (rw.gold ? " gold" : "");
+  $("endtxt").textContent = rw.txt;
 
   var loot = $("loot");
   loot.innerHTML = "";
-  r.loot.forEach(function(l){
+  rw.loot.forEach(function(l){
     var s = document.createElement("span");
     s.textContent = l;
     loot.appendChild(s);
@@ -886,7 +883,7 @@ function finale(){
     if(!t0) t0 = ts;
     var p = Math.min(1, (ts - t0) / dur);
     var eased = 1 - Math.pow(1 - p, 3);
-    el.textContent = Math.round(eased * r.liters);
+    el.textContent = Math.round(eased * rw.liters);
     if(p < 1) requestAnimationFrame(tick);
   }
   requestAnimationFrame(tick);
