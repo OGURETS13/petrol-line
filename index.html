@@ -248,8 +248,8 @@ button{font:inherit;color:inherit}
 
 .arena .hint{
   position:absolute;left:0;right:0;bottom:12px;text-align:center;
-  font-family:var(--display);font-size:12px;letter-spacing:.12em;
-  color:var(--paint-dim);pointer-events:none;
+  font-family:var(--display);font-size:clamp(11px,3.4vw,13px);font-weight:500;letter-spacing:.05em;
+  color:var(--paint-dim);pointer-events:none;padding:0 10px;
 }
 
 /* ---------- finale ---------- */
@@ -408,7 +408,7 @@ button{font:inherit;color:inherit}
           <path d="M36 22q-6 10-6 22" stroke="#E6D9CE" stroke-width="4" fill="none" stroke-linecap="round" opacity=".55"/>
         </svg>
       </div>
-      <div class="hint" id="hint">БЕЙТЕ ПО ЛИЦУ</div>
+      <div class="hint" id="hint">Порхай как бабочка, жаль как пчела</div>
     </div>
 
     <div id="fightend" hidden>
@@ -702,7 +702,7 @@ function startFight(){
   $("hp-me").style.width = "100%";
   $("hp-him").style.width = "100%";
   $("fightend").hidden = true;
-  $("hint").textContent = "БЕЙТЕ ПО ЛИЦУ";
+  $("hint").textContent = "Порхай как бабочка, жаль как пчела";
   $("foe").hidden = true;
   $("glove").hidden = true;
   show("s-fight");
@@ -720,7 +720,7 @@ function spawn(){
   foe.style.top = y + "px";
   foe.hidden = false;
   foe.classList.remove("pop");
-  $("hint").textContent = "БЕЙТЕ ПО ЛИЦУ";
+  $("hint").textContent = "Порхай как бабочка, жаль как пчела";
   F.visible = true;
 
   // window shrinks a little as he gets angrier, but never below 620 ms
@@ -810,23 +810,23 @@ function endFight(won){
 function reward(score, total){
   var r = score / total;
   if(score === total) return {
-    liters:100, gold:true,
+    liters:90, gold:true,
     prize:"Полный бак и две канистры",
-    loot:["БАК 60 Л","КАНИСТРА 20 Л","КАНИСТРА 20 Л"],
+    loot:["БАК 50 Л","КАНИСТРА 20 Л","КАНИСТРА 20 Л"],
     head:"Вам налили всё",
     txt:"Оператор посмотрел на ваши десять из десяти, оглянулся на камеру и сказал: «Подгоняйте багажник». Столько сегодня не набрал никто."
   };
   if(r >= 0.8) return {
-    liters:80, gold:true,
+    liters:70, gold:true,
     prize:"Полный бак и канистра",
-    loot:["БАК 60 Л","КАНИСТРА 20 Л"],
+    loot:["БАК 50 Л","КАНИСТРА 20 Л"],
     head:"Лимит для вас подвинули",
     txt:"Двадцать литров в одни руки — это для тех, кто путает хук с апперкотом. Вам залили бак и разрешили одну канистру. По-тихому."
   };
   if(r >= 0.5) return {
-    liters:60, gold:false,
+    liters:50, gold:false,
     prize:"Полный бак",
-    loot:["БАК 60 Л"],
+    loot:["БАК 50 Л"],
     head:"Полный бак",
     txt:"Крепкая работа: бак под горловину, без канистры. До дачи и обратно хватит, а там, глядишь, и завезут."
   };
