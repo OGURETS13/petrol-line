@@ -1,0 +1,919 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#14141A">
+<meta name="description" content="Десять вопросов про бокс и банкротство, кулачный бой у колонки и полный бак в конце.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9B%BD%3C/text%3E%3C/svg%3E">
+<title>Очередь на АИ-95</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&family=Share+Tech+Mono&display=swap">
+</head>
+<body>
+
+<style>
+:root{
+  --night:#14141A;
+  --asphalt:#1D1D25;
+  --asphalt-hi:#262630;
+  --kerb:#35353F;
+  --paint:#E9E7E0;
+  --paint-dim:#94949F;
+  --amber:#F5A524;
+  --amber-deep:#8A5C0D;
+  --go:#4FA65B;
+  --stop:#D6403A;
+  --ring:#B8312B;
+  --display:"Oswald","Arial Narrow",Impact,sans-serif;
+  --body:"Golos Text","Helvetica Neue",Arial,sans-serif;
+  --mono:"Share Tech Mono","Courier New",monospace;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:var(--night);
+  color:var(--paint);
+  font-family:var(--body);
+  font-size:16px;
+  line-height:1.5;
+  -webkit-text-size-adjust:100%;
+  -webkit-tap-highlight-color:transparent;
+}
+
+.wrap{
+  max-width:460px;
+  margin:0 auto;
+  padding:14px 16px 40px;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+h1,h2,h3{margin:0;font-family:var(--display);font-weight:600;text-wrap:balance;line-height:1.1}
+
+.eyebrow{
+  font-family:var(--display);
+  font-size:12px;
+  font-weight:500;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--amber);
+}
+
+/* ---------- road strip ---------- */
+
+.road{
+  position:relative;
+  height:78px;
+  border-radius:6px;
+  background:var(--asphalt);
+  border:1px solid var(--kerb);
+  overflow:hidden;
+  flex:none;
+}
+.road::before,.road::after{
+  content:"";position:absolute;left:0;right:0;height:2px;background:#3E3E49;
+}
+.road::before{top:8px}
+.road::after{bottom:8px}
+.lane{
+  position:absolute;left:0;right:64px;top:50%;height:2px;margin-top:-1px;
+  background:repeating-linear-gradient(90deg,var(--paint-dim) 0 12px,transparent 12px 26px);
+  opacity:.35;
+}
+.station{
+  position:absolute;right:0;top:0;bottom:0;width:64px;
+  background:linear-gradient(270deg,rgba(245,165,36,.18),transparent);
+  border-left:2px solid var(--amber);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+}
+.station svg{width:26px;height:30px;display:block}
+.station b{font-family:var(--display);font-size:10px;letter-spacing:.1em;color:var(--amber)}
+
+.car{position:absolute;top:50%;width:44px;margin-top:-13px;transition:left .7s cubic-bezier(.22,1,.36,1)}
+.car svg{width:100%;height:auto;display:block}
+.car.you{z-index:3;filter:drop-shadow(0 0 10px rgba(245,165,36,.5))}
+.car.you .tag{
+  position:absolute;top:-15px;left:50%;transform:translateX(-50%);
+  font-family:var(--display);font-size:10px;letter-spacing:.08em;color:var(--amber);
+}
+
+.posline{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.posline .who{display:flex;align-items:baseline;gap:6px}
+.posline .n{font-family:var(--mono);font-size:28px;color:var(--amber);line-height:1}
+.posline .suf{font-family:var(--display);font-size:13px;font-weight:500;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--paint-dim)}
+.posline .sc{font-family:var(--display);font-size:12px;font-weight:500;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--paint-dim);text-align:right;line-height:1.5}
+.posline .sc b{font-family:var(--mono);font-size:14px;color:var(--paint);font-weight:400;letter-spacing:0}
+
+/* ---------- cards ---------- */
+
+.card{
+  background:var(--asphalt);
+  border:1px solid var(--kerb);
+  border-radius:10px;
+  padding:18px 16px;
+  display:flex;flex-direction:column;gap:14px;
+}
+
+.qtext{font-size:19px;font-weight:600;line-height:1.35;margin:0;text-wrap:balance}
+
+.opts{display:flex;flex-direction:column;gap:8px}
+
+button{font:inherit;color:inherit}
+
+.opt{
+  display:flex;align-items:flex-start;gap:11px;
+  width:100%;text-align:left;
+  background:var(--asphalt-hi);
+  border:1px solid var(--kerb);
+  border-radius:8px;
+  padding:13px 13px;
+  font-size:15.5px;line-height:1.35;
+  cursor:pointer;
+  touch-action:manipulation;
+  transition:border-color .15s,background .15s;
+}
+.opt .k{
+  font-family:var(--display);font-size:13px;font-weight:600;
+  color:var(--paint-dim);flex:none;padding-top:1px;min-width:14px;
+}
+.opt:active{background:#2E2E3A}
+.opt:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.opt.right{border-color:var(--go);background:rgba(79,166,91,.13)}
+.opt.right .k{color:var(--go)}
+.opt.wrong{border-color:var(--stop);background:rgba(214,64,58,.13)}
+.opt.wrong .k{color:var(--stop)}
+.opt.dim{opacity:.45}
+.opt[disabled]{cursor:default}
+
+.verdict{display:flex;flex-direction:column;gap:7px;border-top:1px solid var(--kerb);padding-top:13px}
+.verdict .head{font-family:var(--display);font-size:17px;font-weight:600;letter-spacing:.02em}
+.verdict.ok .head{color:var(--go)}
+.verdict.no .head{color:var(--stop)}
+.verdict p{margin:0;font-size:14.5px;color:var(--paint-dim);line-height:1.5}
+
+.btn{
+  display:block;width:100%;
+  background:var(--amber);color:#17120A;
+  border:none;border-radius:8px;
+  padding:15px;
+  font-family:var(--display);font-size:17px;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;cursor:pointer;touch-action:manipulation;
+}
+.btn:active{background:var(--amber-deep);color:var(--paint)}
+.btn:focus-visible{outline:2px solid var(--paint);outline-offset:2px}
+.btn.ghost{background:transparent;border:1px solid var(--kerb);color:var(--paint-dim)}
+.btn.red{background:var(--ring);color:#FFF1EF}
+
+/* ---------- start / story ---------- */
+
+.hero{display:flex;flex-direction:column;gap:10px}
+.hero h1{font-size:40px;letter-spacing:.01em;text-transform:uppercase}
+.hero .sub{font-size:15px;color:var(--paint-dim);line-height:1.55}
+.sign{
+  align-self:flex-start;
+  border:2px solid var(--amber);color:var(--amber);
+  font-family:var(--display);font-weight:600;font-size:12px;letter-spacing:.16em;
+  padding:4px 10px;border-radius:3px;
+}
+.rules{display:flex;flex-direction:column;gap:9px;margin:0;padding:0;list-style:none}
+.rules li{display:flex;gap:10px;font-size:14.5px;color:var(--paint-dim);line-height:1.45}
+.rules li i{
+  font-style:normal;font-family:var(--mono);font-size:13px;color:var(--amber);
+  flex:none;padding-top:2px;
+}
+.bday{
+  font-family:var(--display);font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--paint-dim);border-top:1px dashed var(--kerb);padding-top:13px;
+}
+
+.story p{margin:0 0 11px;font-size:16px;line-height:1.55}
+.story p:last-of-type{margin-bottom:0}
+.story .said{color:var(--amber);font-weight:500}
+
+/* ---------- fight ---------- */
+
+.bars{display:flex;flex-direction:column;gap:8px}
+.bar{display:flex;align-items:center;gap:9px}
+.bar .nm{font-family:var(--display);font-size:12px;letter-spacing:.08em;width:82px;flex:none;color:var(--paint-dim)}
+.bar .tr{flex:1;height:11px;background:var(--asphalt-hi);border:1px solid var(--kerb);border-radius:2px;overflow:hidden}
+.bar .fl{height:100%;width:100%;transition:width .18s linear}
+.bar.me .fl{background:var(--go)}
+.bar.him .fl{background:var(--ring)}
+
+.arena{
+  position:relative;
+  height:340px;
+  border-radius:10px;
+  border:1px solid var(--kerb);
+  background:
+    radial-gradient(120% 80% at 50% 0%,rgba(184,49,43,.16),transparent 70%),
+    repeating-linear-gradient(0deg,var(--asphalt) 0 26px,#20202A 26px 52px);
+  overflow:hidden;
+  touch-action:manipulation;
+  user-select:none;-webkit-user-select:none;
+  cursor:crosshair;
+}
+.arena.shake{animation:shk .22s}
+@keyframes shk{
+  0%,100%{transform:translate(0,0)}
+  25%{transform:translate(-5px,3px)}
+  50%{transform:translate(5px,-3px)}
+  75%{transform:translate(-3px,-2px)}
+}
+.arena .flash{
+  position:absolute;inset:0;background:var(--stop);opacity:0;pointer-events:none;
+  transition:opacity .12s;
+}
+.arena.hurt .flash{opacity:.3;transition:none}
+
+#foe{
+  position:absolute;width:96px;height:96px;
+  transform:translate(-50%,-50%) scale(1);
+  transition:transform .12s cubic-bezier(.3,1.6,.5,1);
+  cursor:pointer;
+}
+#foe svg{width:100%;height:100%;display:block;pointer-events:none}
+#foe[hidden]{display:none!important}
+#foe.pop{transform:translate(-50%,-50%) scale(.6)}
+
+#glove{
+  position:absolute;width:104px;height:104px;
+  transform:translate(-50%,-50%) rotate(-18deg);
+  pointer-events:none;z-index:5;
+}
+#glove svg{width:100%;height:100%;display:block}
+
+.arena .hint{
+  position:absolute;left:0;right:0;bottom:12px;text-align:center;
+  font-family:var(--display);font-size:12px;letter-spacing:.12em;
+  color:var(--paint-dim);pointer-events:none;
+}
+
+/* ---------- finale ---------- */
+
+.pump{
+  border:1px solid var(--kerb);border-radius:10px;overflow:hidden;background:var(--asphalt);
+}
+.pump .top{
+  background:#0C0C10;padding:16px;display:flex;flex-direction:column;gap:8px;
+  border-bottom:1px solid var(--kerb);
+}
+.pump .row{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.pump .row span{font-family:var(--display);font-size:11px;letter-spacing:.14em;color:var(--paint-dim)}
+.pump .big{
+  font-family:var(--mono);font-size:52px;line-height:.95;color:var(--amber);
+  text-shadow:0 0 18px rgba(245,165,36,.35);font-variant-numeric:tabular-nums;
+}
+.pump .big small{font-family:var(--display);font-size:19px;font-weight:500;letter-spacing:.06em;color:var(--amber-deep)}
+.pump .bot{padding:16px;display:flex;flex-direction:column;gap:12px}
+.prize{font-family:var(--display);font-size:26px;font-weight:600;line-height:1.15;text-transform:uppercase}
+.prize.gold{color:var(--amber)}
+.loot{display:flex;flex-wrap:wrap;gap:8px}
+.loot span{
+  display:inline-flex;align-items:center;gap:6px;
+  border:1px solid var(--amber);color:var(--amber);border-radius:20px;
+  padding:5px 12px;font-size:13px;font-family:var(--display);letter-spacing:.06em;
+}
+.verdict-txt{font-size:15px;color:var(--paint-dim);line-height:1.55;margin:0}
+
+.recap{display:flex;flex-direction:column;gap:0;margin:0;padding:0;list-style:none}
+.recap li{
+  display:flex;gap:10px;align-items:flex-start;
+  padding:9px 0;border-bottom:1px solid #2A2A33;font-size:13.5px;line-height:1.4;
+}
+.recap li:last-child{border-bottom:none}
+.recap .m{font-family:var(--display);font-size:15px;font-weight:600;flex:none;width:16px;line-height:1.3}
+.recap .m.y{color:var(--go)}
+.recap .m.n{color:var(--stop)}
+.recap .t{color:var(--paint-dim)}
+.recap .t b{color:var(--paint);font-weight:500;display:block}
+
+.foot{text-align:center;font-size:12px;color:#5C5C68;letter-spacing:.04em}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;transition-duration:.001ms!important}
+}
+</style>
+
+<div class="wrap">
+
+  <!-- ============ START ============ -->
+  <section id="s-start">
+    <div class="hero">
+      <div class="sign">АЗС · РАБОТАЕТ</div>
+      <h1>Очередь<br>на АИ-95</h1>
+      <p class="sub">Топлива в городе нет. У колонки — сорок машин, в одни руки не больше двадцати литров,
+      и очередь двигается только к тем, кто чего-то в этой жизни знает.</p>
+    </div>
+
+    <div class="card">
+      <div class="eyebrow">Как это работает</div>
+      <ul class="rules">
+        <li><i>01</i><span>Десять вопросов: бокс и банкротство. Каждый верный ответ продвигает вас на четыре машины вперёд.</span></li>
+        <li><i>02</i><span>Перед последним вопросом возможны осложнения. Человеческий фактор.</span></li>
+        <li><i>03</i><span>Сколько нальют на финише — зависит только от счёта. Десять из десяти — это бак и две канистры.</span></li>
+      </ul>
+      <div class="bday">С днём рождения. Без очереди сегодня всё равно нельзя.</div>
+    </div>
+
+    <button class="btn" id="go">Встать в очередь</button>
+  </section>
+
+  <!-- ============ QUIZ ============ -->
+  <section id="s-quiz" hidden>
+    <div class="road" id="road">
+      <div class="lane"></div>
+      <div class="station">
+        <svg viewBox="0 0 26 30" aria-hidden="true">
+          <rect x="2" y="4" width="14" height="24" rx="2" fill="#F5A524"/>
+          <rect x="5" y="8" width="8" height="7" rx="1" fill="#0C0C10"/>
+          <rect x="5" y="18" width="8" height="2" rx="1" fill="#0C0C10" opacity=".5"/>
+          <path d="M17 12h4a2 2 0 0 1 2 2v9a1.5 1.5 0 0 1-3 0v-7h-3z" fill="#8A5C0D"/>
+        </svg>
+        <b>АИ-95</b>
+      </div>
+    </div>
+
+    <div class="posline">
+      <div class="who">
+        <span class="n" id="pos">40</span>
+        <span class="suf">-й в очереди</span>
+      </div>
+      <div class="sc">Вопрос <b id="qn">1</b>/<b>10</b><br>Счёт <b id="sc">0</b></div>
+    </div>
+
+    <div class="card">
+      <div class="eyebrow" id="cat">Бокс · техника</div>
+      <p class="qtext" id="q">—</p>
+      <div class="opts" id="opts"></div>
+      <div class="verdict" id="verdict" hidden>
+        <div class="head" id="vhead">—</div>
+        <p id="vtext">—</p>
+      </div>
+      <button class="btn" id="next" hidden>Дальше</button>
+    </div>
+  </section>
+
+  <!-- ============ FIGHT INTRO ============ -->
+  <section id="s-intro" hidden>
+    <div class="hero">
+      <div class="sign" style="border-color:var(--ring);color:var(--ring)">Внимание</div>
+      <h1 style="font-size:32px">Из «десятки»<br>вышел мужик</h1>
+    </div>
+    <div class="card story">
+      <p>До колонки — рукой подать. И тут из серой «десятки» впереди вылезает мужик в кепке,
+      обходит вашу машину и стучит в стекло костяшкой.</p>
+      <p class="said">— Слышь, командир. Я тут до тебя стоял. Выходи, разберёмся по-мужски.</p>
+      <p>Объяснять ему про очерёдность удовлетворения требований бессмысленно.
+      Он в эту доктрину не верит.</p>
+      <div class="verdict" style="border-color:var(--kerb)">
+        <div class="head" style="color:var(--ring)">Правила уличные</div>
+        <p>Бейте пальцем по лицу, как только оно появится. Промедлите — прилетит вам.
+        Полоски здоровья сверху. Проиграете — дадим реванш, но место в очереди утекает.</p>
+      </div>
+    </div>
+    <button class="btn red" id="tofight">Встать в стойку</button>
+  </section>
+
+  <!-- ============ FIGHT ============ -->
+  <section id="s-fight" hidden>
+    <div class="bars">
+      <div class="bar me"><div class="nm">ВЫ</div><div class="tr"><div class="fl" id="hp-me"></div></div></div>
+      <div class="bar him"><div class="nm">МУЖИК</div><div class="tr"><div class="fl" id="hp-him"></div></div></div>
+    </div>
+
+    <div class="arena" id="arena">
+      <div class="flash"></div>
+      <div id="foe" hidden>
+        <svg viewBox="0 0 96 96" aria-hidden="true">
+          <ellipse cx="48" cy="56" rx="26" ry="28" fill="#D6A379"/>
+          <ellipse cx="21" cy="56" rx="5" ry="7" fill="#C2916A"/>
+          <ellipse cx="75" cy="56" rx="5" ry="7" fill="#C2916A"/>
+          <path d="M26 72q22 14 44 0 -4 16 -22 16T26 72z" fill="#B4835E" opacity=".55"/>
+          <path d="M22 36q4-16 26-16t26 16q-26-7-52 0z" fill="#3D4A3B"/>
+          <path d="M18 36q30-8 60 0 2 5-4 6-26-5-52 0-6-1-4-6z" fill="#2E3A2D"/>
+          <path d="M30 44l16 5-1 5-16-6z" fill="#241D16"/>
+          <path d="M66 44l-16 5 1 5 16-6z" fill="#241D16"/>
+          <circle cx="37" cy="56" r="4" fill="#241D16"/>
+          <circle cx="59" cy="56" r="4" fill="#241D16"/>
+          <path d="M38 76q10-6 20 0" stroke="#7A4A3A" stroke-width="4" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div id="glove" hidden>
+        <svg viewBox="0 0 104 104" aria-hidden="true">
+          <rect x="60" y="30" width="34" height="40" rx="7" fill="#7E211D"/>
+          <rect x="58" y="26" width="14" height="48" rx="5" fill="#6A1A17"/>
+          <ellipse cx="42" cy="48" rx="32" ry="29" fill="#B8312B"/>
+          <ellipse cx="20" cy="70" rx="14" ry="11" fill="#A32A25"/>
+          <path d="M44 24q10 8 10 24" stroke="#E6D9CE" stroke-width="4" fill="none" stroke-linecap="round" opacity=".85"/>
+          <path d="M36 22q-6 10-6 22" stroke="#E6D9CE" stroke-width="4" fill="none" stroke-linecap="round" opacity=".55"/>
+        </svg>
+      </div>
+      <div class="hint" id="hint">БЕЙТЕ ПО ЛИЦУ</div>
+    </div>
+
+    <div id="fightend" hidden>
+      <div class="card">
+        <div class="eyebrow" id="fe-eye">—</div>
+        <p class="qtext" id="fe-txt" style="font-size:17px">—</p>
+      </div>
+      <button class="btn" id="fe-btn" style="margin-top:14px">Дальше</button>
+    </div>
+  </section>
+
+  <!-- ============ FINALE ============ -->
+  <section id="s-end" hidden>
+    <div class="hero">
+      <div class="sign">Колонка № 3</div>
+      <h1 style="font-size:34px" id="end-h">Заправляем</h1>
+    </div>
+
+    <div class="pump">
+      <div class="top">
+        <div class="row"><span>Литры</span><span>АИ-95</span></div>
+        <div class="big"><span id="liters">0</span><small> Л</small></div>
+        <div class="row"><span>Счёт <span id="end-sc" style="color:var(--paint)">0</span>/10</span><span id="end-fight">—</span></div>
+      </div>
+      <div class="bot">
+        <div class="prize" id="prize">—</div>
+        <div class="loot" id="loot"></div>
+        <p class="verdict-txt" id="endtxt">—</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="eyebrow">Разбор полётов</div>
+      <ul class="recap" id="recap"></ul>
+    </div>
+
+    <button class="btn ghost" id="again">Ещё раз в очередь</button>
+    <div class="foot">С днём рождения 🥊⛽</div>
+  </section>
+
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ---------------- questions ---------------- */
+
+var Q = [
+  {
+    cat:"Бокс · техника",
+    q:"Как называется короткий удар снизу вверх, обычно в подбородок?",
+    a:["Джеб","Хук","Апперкот","Кросс"],
+    c:2,
+    why:"Апперкот. Джеб — прямой передней рукой, хук — боковой по дуге, кросс — прямой дальней рукой «через» руку соперника.",
+    tag:"Апперкот"
+  },
+  {
+    cat:"Банкротство · источник",
+    q:"Каким федеральным законом сегодня регулируется банкротство в России?",
+    a:["№ 229-ФЗ","№ 127-ФЗ","№ 44-ФЗ","№ 214-ФЗ"],
+    c:1,
+    why:"№ 127-ФЗ «О несостоятельности (банкротстве)» от 26.10.2002. 229-ФЗ — исполнительное производство, 44-ФЗ — госзакупки, 214-ФЗ — долёвка.",
+    tag:"127-ФЗ"
+  },
+  {
+    cat:"Бокс · история",
+    q:"Какое имя Мохаммед Али получил при рождении?",
+    a:["Кассиус Клей","Уолкер Смит","Арнольд Крим","Джозеф Барроу"],
+    c:0,
+    why:"Кассиус Марцеллус Клей — младший. Остальные тоже настоящие: Уолкер Смит — Шугар Рэй Робинсон, Арнольд Крим — Джерси Джо Уолкотт, Джозеф Барроу — Джо Луис.",
+    tag:"Кассиус Клей"
+  },
+  {
+    cat:"Банкротство · порог",
+    q:"Гражданин ОБЯЗАН сам подать заявление о своём банкротстве, если долг превышает:",
+    a:["300 000 ₽","500 000 ₽","1 000 000 ₽","50 000 ₽"],
+    c:1,
+    why:"500 000 ₽ при просрочке свыше трёх месяцев — п. 1 ст. 213.4. Право подать заявление есть и при меньшей сумме, а вот обязанность возникает с полумиллиона.",
+    tag:"500 000 ₽"
+  },
+  {
+    cat:"Бокс · тактика",
+    q:"«Грохот в джунглях», Заир, 1974-й. Чем Али измотал Формана?",
+    a:["Челноком на дальней","«Канатами-обманками»","Клинчем и разрывом","Филли-шелл"],
+    c:1,
+    why:"Rope-a-dope: Али лёг на канаты, восемь раундов принимал корпус в глухой защите — и вырубил выдохшегося Формана в восьмом.",
+    tag:"Rope-a-dope"
+  },
+  {
+    cat:"Банкротство · МФЦ",
+    q:"В каких пределах долга можно пройти внесудебное банкротство через МФЦ?",
+    a:["от 50 000 до 500 000 ₽","от 25 000 до 1 000 000 ₽","от 100 000 до 2 000 000 ₽","предел не установлен"],
+    c:1,
+    why:"С ноября 2023-го — от 25 000 до 1 000 000 ₽. До этого коридор был 50 000 – 500 000 ₽.",
+    tag:"25 тыс. – 1 млн"
+  },
+  {
+    cat:"Бокс · правила",
+    q:"Какой свод правил в 1867 году ввёл перчатки, трёхминутные раунды и счёт до десяти?",
+    a:["Правила Джека Браутона","Лондонские призовые правила","Правила маркиза Куинсберри","Устав ABA"],
+    c:2,
+    why:"Правила маркиза Куинсберри — написал их, впрочем, Джон Чемберс. Браутон — 1743-й, Лондонские призовые — 1838-й, и оба ещё про голые кулаки.",
+    tag:"Куинсберри"
+  },
+  {
+    cat:"Банкротство · процедуры",
+    q:"Какая процедура НЕ применяется в деле о банкротстве юридического лица?",
+    a:["Наблюдение","Внешнее управление","Конкурсное производство","Реализация имущества"],
+    c:3,
+    why:"Реализация имущества — процедура банкротства гражданина (§ 1.1 главы X). У юрлица: наблюдение, финансовое оздоровление, внешнее управление, конкурсное производство, мировое соглашение.",
+    tag:"Реализация имущества"
+  },
+  {
+    cat:"Банкротство · оспаривание",
+    q:"Максимальный период подозрительности для сделки, совершённой во вред кредиторам (п. 2 ст. 61.2):",
+    a:["6 месяцев","1 год","3 года","10 лет"],
+    c:2,
+    why:"Три года до принятия заявления. Год — это неравноценное встречное предоставление по п. 1, полгода — сделки с предпочтением по ст. 61.3.",
+    tag:"3 года"
+  },
+  {
+    cat:"Бокс · древность",
+    q:"Финальный. В каком году кулачный бой впервые вошёл в программу античных Олимпийских игр?",
+    a:["776 г. до н. э.","688 г. до н. э.","520 г. до н. э.","393 г. н. э."],
+    c:1,
+    why:"688 г. до н. э., XXIII Олимпиада — пигмахия. 776-й — первые игры вообще, 520-й — гоплитодром, 393 г. н. э. — год, когда Феодосий всё это запретил.",
+    tag:"688 до н. э."
+  }
+];
+
+var START_POS = 40, STEP_RIGHT = 4, STEP_WRONG = 1, FIGHT_BONUS = 4;
+
+/* ---------------- state ---------------- */
+
+var st = {};
+function reset(){
+  st = {i:0, score:0, pos:START_POS, answered:false, wonFight:false, log:[]};
+}
+
+/* ---------------- helpers ---------------- */
+
+var $ = function(id){ return document.getElementById(id); };
+function show(id){
+  ["s-start","s-quiz","s-intro","s-fight","s-end"].forEach(function(s){
+    $(s).hidden = (s !== id);
+  });
+  window.scrollTo(0,0);
+}
+
+/* tiny percussive blip; silently absent if WebAudio is unavailable */
+var actx = null;
+function beep(freq, dur, type, vol){
+  try{
+    if(!actx) actx = new (window.AudioContext||window.webkitAudioContext)();
+    if(actx.state === "suspended") actx.resume();
+    var o = actx.createOscillator(), g = actx.createGain(), t = actx.currentTime;
+    o.type = type || "square"; o.frequency.setValueAtTime(freq, t);
+    o.frequency.exponentialRampToValueAtTime(Math.max(40,freq*0.4), t+dur);
+    g.gain.setValueAtTime(vol||0.07, t);
+    g.gain.exponentialRampToValueAtTime(0.0001, t+dur);
+    o.connect(g); g.connect(actx.destination);
+    o.start(t); o.stop(t+dur+0.02);
+  }catch(e){}
+}
+
+/* ---------------- road ---------------- */
+
+var CAR = '<svg viewBox="0 0 48 24" aria-hidden="true"><path d="M3 18v-5q0-2 2-2h8l5-6h13l4 6h8q2 0 2 2v5z" fill="FILL"/><circle cx="13" cy="18" r="3.5" fill="#0C0C10"/><circle cx="35" cy="18" r="3.5" fill="#0C0C10"/><circle cx="13" cy="18" r="1.4" fill="#4A4A55"/><circle cx="35" cy="18" r="1.4" fill="#4A4A55"/></svg>';
+
+function drawRoad(){
+  var road = $("road");
+  Array.prototype.slice.call(road.querySelectorAll(".car")).forEach(function(n){ n.remove(); });
+
+  var ahead = Math.min(5, st.pos);
+  var track = road.clientWidth - 64;
+  var youLeft = 6 + (1 - st.pos/START_POS) * (track - 100);
+
+  for(var i=0;i<ahead;i++){
+    var d = document.createElement("div");
+    d.className = "car";
+    d.innerHTML = CAR.replace("FILL", i%2 ? "#4A4A58" : "#3B4A55");
+    d.style.left = (youLeft + 48 + i * ((track - youLeft - 48) / Math.max(1,ahead))) + "px";
+    d.style.opacity = 0.75;
+    road.appendChild(d);
+  }
+
+  var you = document.createElement("div");
+  you.className = "car you";
+  you.innerHTML = '<span class="tag">ВЫ</span>' + CAR.replace("FILL", "#F5A524");
+  you.style.left = youLeft + "px";
+  road.appendChild(you);
+}
+
+function move(by){
+  st.pos = Math.max(0, st.pos - by);
+  $("pos").textContent = st.pos;
+  drawRoad();
+}
+
+/* ---------------- quiz ---------------- */
+
+var KEYS = ["А","Б","В","Г"];
+
+function renderQ(){
+  var q = Q[st.i];
+  st.answered = false;
+
+  $("cat").textContent = q.cat;
+  $("q").textContent = q.q;
+  $("qn").textContent = st.i + 1;
+  $("sc").textContent = st.score;
+  $("verdict").hidden = true;
+  $("next").hidden = true;
+
+  var box = $("opts");
+  box.innerHTML = "";
+  q.a.forEach(function(text, idx){
+    var b = document.createElement("button");
+    b.className = "opt";
+    b.type = "button";
+    b.innerHTML = '<span class="k">' + KEYS[idx] + '</span><span>' + text + '</span>';
+    b.addEventListener("click", function(){ answer(idx); });
+    box.appendChild(b);
+  });
+
+  show("s-quiz");
+  drawRoad();
+}
+
+function answer(idx){
+  if(st.answered) return;
+  st.answered = true;
+
+  var q = Q[st.i], ok = (idx === q.c);
+  var nodes = $("opts").querySelectorAll(".opt");
+
+  for(var i=0;i<nodes.length;i++){
+    nodes[i].disabled = true;
+    if(i === q.c) nodes[i].classList.add("right");
+    else if(i === idx) nodes[i].classList.add("wrong");
+    else nodes[i].classList.add("dim");
+  }
+
+  st.log.push({ok:ok, cat:q.cat, tag:q.tag});
+
+  if(ok){
+    st.score++;
+    $("sc").textContent = st.score;
+    move(STEP_RIGHT);
+    beep(720, 0.09, "triangle", 0.06);
+  }else{
+    move(STEP_WRONG);
+    beep(150, 0.16, "sawtooth", 0.05);
+  }
+
+  var v = $("verdict");
+  v.hidden = false;
+  v.className = "verdict " + (ok ? "ok" : "no");
+  $("vhead").textContent = ok ? "Проехали вперёд на четыре машины" : "Стоим. Очередь двигается сама по себе";
+  $("vtext").textContent = q.why;
+
+  var n = $("next");
+  n.hidden = false;
+  n.textContent = (st.i === 8) ? "Тронуться дальше" : (st.i === 9 ? "К колонке" : "Дальше");
+}
+
+function nextStep(){
+  st.i++;
+  if(st.i === 9 && !st.wonFight){ show("s-intro"); return; }
+  if(st.i >= Q.length){ finale(); return; }
+  renderQ();
+}
+
+/* ---------------- fight ---------------- */
+
+var F = null;
+
+function startFight(){
+  F = {
+    me: 100, him: 100,
+    over: false,
+    timer: null,
+    visible: false,
+    misses: 0
+  };
+  $("hp-me").style.width = "100%";
+  $("hp-him").style.width = "100%";
+  $("fightend").hidden = true;
+  $("hint").textContent = "БЕЙТЕ ПО ЛИЦУ";
+  $("foe").hidden = true;
+  $("glove").hidden = true;
+  show("s-fight");
+  F.timer = setTimeout(spawn, 700);
+}
+
+function spawn(){
+  if(!F || F.over) return;
+  var arena = $("arena"), foe = $("foe");
+  var pad = 62;
+  var x = pad + Math.random() * Math.max(1, arena.clientWidth - pad*2);
+  var y = pad + Math.random() * Math.max(1, arena.clientHeight - pad*2 - 20);
+
+  foe.style.left = x + "px";
+  foe.style.top = y + "px";
+  foe.hidden = false;
+  foe.classList.remove("pop");
+  $("hint").textContent = "БЕЙТЕ ПО ЛИЦУ";
+  F.visible = true;
+
+  // window shrinks a little as he gets angrier, but never below 620 ms
+  var win = Math.max(620, 1000 - (100 - F.him) * 3);
+  F.timer = setTimeout(function(){
+    if(!F || F.over || !F.visible) return;
+    F.visible = false;
+    foe.hidden = true;
+    hitMe();
+  }, win);
+}
+
+function hitFoe(ev){
+  if(!F || F.over || !F.visible) return;
+  ev.preventDefault();
+  ev.stopPropagation();
+
+  clearTimeout(F.timer);
+  F.visible = false;
+
+  var foe = $("foe");
+  foe.classList.add("pop");
+
+  var g = $("glove");
+  g.style.left = foe.style.left;
+  g.style.top = foe.style.top;
+  g.hidden = false;
+  beep(90, 0.13, "square", 0.09);
+
+  setTimeout(function(){ g.hidden = true; foe.hidden = true; }, 130);
+
+  F.him = Math.max(0, F.him - 12);
+  $("hp-him").style.width = F.him + "%";
+
+  if(F.him <= 0){ endFight(true); return; }
+  F.timer = setTimeout(spawn, 320 + Math.random() * 340);
+}
+
+function hitMe(){
+  F.me = Math.max(0, F.me - 10);
+  F.misses++;
+  $("hp-me").style.width = F.me + "%";
+  $("hint").textContent = "ПРИЛЕТЕЛО";
+
+  var a = $("arena");
+  a.classList.add("shake","hurt");
+  beep(70, 0.2, "sawtooth", 0.08);
+  setTimeout(function(){ a.classList.remove("shake","hurt"); }, 230);
+
+  if(F.me <= 0){ endFight(false); return; }
+  F.timer = setTimeout(spawn, 420 + Math.random() * 300);
+}
+
+function endFight(won){
+  F.over = true;
+  clearTimeout(F.timer);
+  $("foe").hidden = true;
+  $("glove").hidden = true;
+  $("hint").textContent = won ? "ОН СЕЛ В МАШИНУ" : "ВЫ СЕЛИ В МАШИНУ";
+
+  var e = $("fe-eye"), t = $("fe-txt"), b = $("fe-btn");
+  $("fightend").hidden = false;
+
+  if(won){
+    st.wonFight = true;
+    move(FIGHT_BONUS);
+    beep(560, 0.1, "triangle", 0.07);
+    setTimeout(function(){ beep(840, 0.16, "triangle", 0.07); }, 110);
+    e.textContent = "Нокаут за " + (100 - F.me) + " единиц урона";
+    t.textContent = F.misses === 0
+      ? "Он не попал по вам ни разу. Мужик молча сел в «десятку» и уехал из очереди совсем — вы продвинулись ещё на четыре машины."
+      : "Мужик уходит к своей «десятке», придерживая кепку. Место в очереди за вами, плюс четыре машины сверху.";
+    b.textContent = "К последнему вопросу";
+    b.className = "btn";
+    b.onclick = function(){ renderQ(); };
+  }else{
+    e.textContent = "Вас усадили на асфальт";
+    t.textContent = "Обидно, но не смертельно: очередь никуда не делась, а мужик готов дать реванш. Второй раунд бесплатный.";
+    b.textContent = "Реванш";
+    b.className = "btn red";
+    b.onclick = startFight;
+  }
+}
+
+/* ---------------- finale ---------------- */
+
+function reward(score){
+  if(score >= 10) return {
+    liters:100, gold:true,
+    prize:"Полный бак и две канистры",
+    loot:["БАК 60 Л","КАНИСТРА 20 Л","КАНИСТРА 20 Л"],
+    head:"Вам налили всё",
+    txt:"Оператор посмотрел на ваши десять из десяти, оглянулся на камеру и сказал: «Подгоняйте багажник». Десять из десяти сегодня не сделал никто."
+  };
+  if(score >= 8) return {
+    liters:80, gold:true,
+    prize:"Полный бак и канистра",
+    loot:["БАК 60 Л","КАНИСТРА 20 Л"],
+    head:"Лимит для вас подвинули",
+    txt:"Двадцать литров в одни руки — это для тех, кто путает хук с апперкотом. Вам залили бак и разрешили одну канистру. По-тихому."
+  };
+  if(score >= 5) return {
+    liters:60, gold:false,
+    prize:"Полный бак",
+    loot:["БАК 60 Л"],
+    head:"Полный бак",
+    txt:"Крепкая работа: бак под горловину, без канистры. До дачи и обратно хватит, а там, глядишь, и завезут."
+  };
+  if(score >= 3) return {
+    liters:20, gold:false,
+    prize:"Двадцать литров. Как всем",
+    loot:["20 Л"],
+    head:"Двадцать литров",
+    txt:"Лимит в одни руки, никаких исключений. Зато вы всё-таки достояли — а половина очереди уехала ни с чем."
+  };
+  return {
+    liters:10, gold:false,
+    prize:"Десять литров и сочувствие",
+    loot:["10 Л"],
+    head:"Почти успели",
+    txt:"Пока вы вспоминали, чем подозрительная сделка отличается от сделки с предпочтением, в цистерне кончился девяносто пятый. Налили, что было на дне."
+  };
+}
+
+function finale(){
+  var r = reward(st.score);
+
+  $("end-h").textContent = r.head;
+  $("end-sc").textContent = st.score;
+  $("end-fight").textContent = st.wonFight ? "БОЙ ВЫИГРАН" : "БОЙ НЕ ЗАСЧИТАН";
+  $("prize").textContent = r.prize;
+  $("prize").className = "prize" + (r.gold ? " gold" : "");
+  $("endtxt").textContent = r.txt;
+
+  var loot = $("loot");
+  loot.innerHTML = "";
+  r.loot.forEach(function(l){
+    var s = document.createElement("span");
+    s.textContent = l;
+    loot.appendChild(s);
+  });
+
+  var rec = $("recap");
+  rec.innerHTML = "";
+  st.log.forEach(function(e, i){
+    var li = document.createElement("li");
+    li.innerHTML = '<span class="m ' + (e.ok ? "y" : "n") + '">' + (e.ok ? "✓" : "✕") + '</span>' +
+                   '<span class="t"><b>' + (i+1) + '. ' + e.cat + '</b>' + e.tag + '</span>';
+    rec.appendChild(li);
+  });
+
+  show("s-end");
+
+  // roll the pump counter up to the prize
+  var el = $("liters"), t0 = null, dur = 1400;
+  el.textContent = "0";
+  function tick(ts){
+    if(!t0) t0 = ts;
+    var p = Math.min(1, (ts - t0) / dur);
+    var eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(eased * r.liters);
+    if(p < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+/* ---------------- wiring ---------------- */
+
+$("go").addEventListener("click", function(){
+  reset();
+  beep(440, 0.06, "triangle", 0.05);
+  renderQ();
+});
+$("next").addEventListener("click", nextStep);
+$("tofight").addEventListener("click", startFight);
+$("again").addEventListener("click", function(){
+  reset();
+  renderQ();
+});
+$("foe").addEventListener("pointerdown", hitFoe);
+$("arena").addEventListener("pointerdown", function(e){ e.preventDefault(); });
+$("arena").addEventListener("contextmenu", function(e){ e.preventDefault(); });
+
+window.addEventListener("resize", function(){ if(!$("s-quiz").hidden) drawRoad(); });
+
+reset();
+})();
+</script>
+
+</body>
+</html>
